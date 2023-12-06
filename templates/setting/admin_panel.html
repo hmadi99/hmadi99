@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div id="input-nav"><a href="{% url 'home' %}" class="primary1">الرئسية </a> <i>&rsaquo;</i> لوحة الادارة </div>
+<!-- <br> -->
+<div class="title-1"><i class="fas fa-user-tie"></i>لوحة الادارة </div>
+<br>
+<br>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="admin-panel">
+    <div class="row">
+        <div class="col-md-6 p-5 bg-gradient-light">
+            Manage<a class="btn btn-sm btn-secondary" href="{% url 'lecturer_list' %}"> اعضاء هيئة التدريس &raquo;</a>
+            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) الماحضرين</p><hr>
+            Manage<a class="btn btn-sm btn-secondary" href="{% url 'student_list' %}"> الطلاب &raquo;</a>
+            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) الطلاب</p><hr>
+            Manage<a class="btn btn-sm btn-secondary" href="{% url 'session_list' %}"> المحاضرة &raquo;</a>
+            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) المحاضرة</p><hr>
+            Manage<a class="btn btn-sm btn-secondary" href="{% url 'semester_list' %}"> الفصل الدراسي &raquo;</a>
+            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) الفصل الدراسي</p>
+        </div>
+        <div class="col-md-6 p-5 bg-gradient-light">
+            إضافة وإسقاط مقرر
+            <label class="switch switch-text switch-success switch-pill" style="float: right;">
+              <input type="checkbox" class="switch-input" checked="true">
+              <span data-on="On" data-off="Off" class="switch-label"></span>
+              <span class="switch-handle"></span>
+            </label>
+            <p><span>&LongRightArrow;</span> يُحوّل 
+                <i class="info-text bg-success">ON</i> or <i class="info-text bg-danger">OFF</i>
+            </p><hr>
+
+            Manage<a class="btn btn-sm btn-secondary" href="{% url 'programs' %}"> الاقسام & المقررات &raquo;</a>
+            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) الاقسام</p>
+            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete)المقررات </p><hr>
+            Manage<a class="btn btn-sm btn-secondary" href="{% url 'course_allocation_view' %}"> مخصصات المقرر &raquo;</a>
+            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) مخصصات المقرر </p><hr>
+            Manage<a class="btn btn-sm btn-secondary" href="{% url 'home' %}"> خبر & حدث &raquo;</a>
+            <p><span>&LongRightArrow;</span> CRUD (Create, Retriev, Update & Delete) خبر & حدث</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

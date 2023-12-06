@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div id="input-nav" ><a href="{% url 'home' %}" class="primary1">الرئسية</a> <i>&rsaquo;</i> 
+    <a href="{% url 'lecturer_list' %}" class="primary1">أعضاء هيئة التدريس</a> <i>&rsaquo;</i>   </div>
+<br>
+<div class="title-1">  <i class="fas fa-chalkboard-teacher  mx-2"></i>  اضافة محاضر  </div>
+<div class="title-line"></div><br>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<form action="" method="POST">{% csrf_token %}
+    <div class="row mb-3 ">
+        <div class="col-md-6 ">
+            <div class=" card my-5 text-right">
+                <p class="form-title text-center my-2">معلومات التسجيل</p>
+                <div class="p-2 mx-3">
+
+                    <div class="form-group ">
+                        <b>الرقم التعريفي.</b>{{ form.username }}
+                        <span class="danger">{{ form.username.errors }}</span>
+                        <p class="text-muted-xs">مسموح ب 150 حرفا او رقما و  @ /./+/-/_ فقط </p>
+                    </div>
+
+                    <div class="form-group">
+                        <b>كلمة المرور </b>{{ form.password1 }}
+                        <span class="danger">{{ form.password1.errors }}</span>
+                        <p class="text-muted-xs">
+                            لا يمكن أن تكون كلمة المرور مشابهة جدا للمعلومات الشخصية الأخرى. <br>
+                            يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل. <br>
+                            لا يمكن أن تكون كلمة المرور كلمة مرور شائعة الاستخدام. <br>
+                            لا يمكن أن تكون كلمة المرور رقمية بالكامل.
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <b>تأكيد كلمة المرور</b>{{ form.password2 }}
+                        <span class="danger">{{ form.password2.errors }}</span>
+                        <p class="text-muted-xs">أدخل نفس كلمة المرور كما كان من قبل ، للتحقق.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card my-5">
+                <p class="form-title text-center my-2">المعلومات الشخصية</p>
+                <div class="p-2">
+                    <div class="form-group">
+                        <b>الاسم الأول</b>{{ form.first_name }}
+                        <span class="danger">{{ form.first_name.errors }}</span>
+                    </div>
+                    <div class="form-group">
+                        <b>اسم العائلة</b>{{ form.last_name }}
+                        <span class="danger">{{ form.last_name.errors }}</span>
+                    </div>
+                    <div class="form-group">
+                        <b>البريد الألكتروني</b>{{ form.email }}
+                        <span class="danger">{{ form.email.errors }}</span>
+                    </div>
+                    <div class="form-group">
+                        <b>العنوان</b>{{ form.address }}
+                        <span class="danger">{{ form.address.errors }}</span>
+                    </div>
+                    <div class="form-group">
+                        <b>رقم الهاتف</b>{{ form.phone }}
+                        <span class="danger">{{ form.phone.errors }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <center><input class="btn btn-outline-primary" type="submit" value="حفظ"></center>
+</form>
+
+{% endblock content %}

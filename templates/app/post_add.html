@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title-page %}
+<a href="{% url 'home' %}" class="primary1"> الرئسية </a> <i>&rsaquo;</i> اضافة عنصر & تعديل
+{% endblock title-page %}
+
+
+{% block content %}
+
+
+<br>
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'error' %}
+<div class="alert alert-danger">
+    <i class="fas fa-exclamation-circle"></i>{{ message }}
+</div>
+{% else %}
+<div class="alert alert-success">
+    <i class="fas fa-check-circle"></i>{{ message }}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<div class="col-md-6">
+    <div class="card pb-3">
+        <div class="card-header bg-primary text-light">
+            <p class="card-title">اضافة منشور</p>
+        </div>
+        <div class='card-body'>
+            <div class="container"><br>
+                <form action="" method="POST">{% csrf_token %}
+                    {{ form|crispy }}
+                    <input class="btn btn-primary mx-2" type="submit" value="نشر">
+                    <a class="btn btn-danger" href="{% url 'home' %}" style="float: right;">الغاء</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

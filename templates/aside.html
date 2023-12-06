@@ -1,0 +1,293 @@
+{% load static %}
+
+
+{% url 'home' as hom %} {% url 'dashboard' as dash %} {% url 'profile' as prof %}
+		{% url 'lecturer_list' as lec %}
+		{% url 'student_list' as stu %} {% url 'course_allocation_view' as cav %}
+		{% url 'programs' as pro %} {% url 'session_list' as sess %} {% url 'semester_list' as sem %}
+		{% url 'add_score' as ascore %} {% url 'grade_results' as vr %}{% url 'ass_results' as ar %}
+		{% url 'course_registration' as cr %} {% url 'edit_profile' as ep %} {% url 'change_password' as cp %}
+		{% comment %} {% url 'quiz_progress' as qpr %} {% url 'quiz_marking' as qce %}  {% endcomment %}
+		{% url 'user_course_list' as ucl %}
+		{% url 'admin_panel' as admin_p %}
+{% comment %} <div id="side-nav">
+	<div class="main-menu"> {% endcomment %}
+		{% comment %} <div class="top-side text-center py-4" style="background-image: url({% static 'img/dotted.jpg' %});">
+			<div class="desktop-hide">
+				<div class="toggle-btn" onclick="toggleSidebar()">
+					<i class="fas fa-times"></i>
+				</div>
+			</div>
+			<img src="{% static 'img/logo.png' %}" width="150px" alt="Logo Django LMS">
+			<p class="text-orange">
+				<mark>
+					<i class="far fa-hand-point-right"></i>
+					{{ request.user.get_user_role }}
+				</mark>
+			</p>
+		</div> {% endcomment %}
+		{% comment %} {% url 'home' as hom %} {% url 'dashboard' as dash %} {% url 'profile' as prof %}
+		{% url 'lecturer_list' as lec %}
+		{% url 'student_list' as stu %} {% url 'course_allocation_view' as cav %}
+		{% url 'programs' as pro %} {% url 'session_list' as sess %} {% url 'semester_list' as sem %}
+		{% url 'add_score' as ascore %} {% url 'grade_results' as vr %}{% url 'ass_results' as ar %}
+		{% url 'course_registration' as cr %} {% url 'edit_profile' as ep %} {% url 'change_password' as cp %} {% endcomment %}
+		{% comment %} {% url 'quiz_progress' as qpr %} {% url 'quiz_marking' as qce %}  {% endcomment %}
+		{% comment %} {% url 'user_course_list' as ucl %}
+		{% url 'admin_panel' as admin_p %}
+		<ul>
+			{% if request.user.is_superuser %}
+			<li class="{% if request.path == dash %}active{% endif %}">
+				<a href="{% url 'dashboard' %}"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+			</li>
+			{% endif %}
+			<li class="{% if request.path == hom %}active{% endif %}">
+				<a href="{% url 'home' %}"><i class="fas fa-home"></i>Home</a>
+			</li>
+			<li class="{% if request.path == prof %}active{% endif %}">
+				<a href="{% url 'profile' %}"><i class="fas fa-user"></i>Profile</a>
+			</li>
+
+			{% if request.user.is_superuser %}
+			<li class="{% if request.path == admin_p %}active{% endif %}">
+				<a href="{% url 'admin_panel' %}"><i class="fas fa-user-tie"></i>Admin Panel</a>
+			</li>
+			<li class="{% if request.path == lec %}active{% endif %}">
+				<a href="{% url 'lecturer_list' %}"><i class="fas fa-chalkboard-teacher"></i>Lecturers</a>
+			</li>
+			<li class="{% if request.path == stu %}active{% endif %}">
+				<a href="{% url 'student_list' %}"><i class="fas fa-user-graduate"></i>Students</a>
+			</li>
+			{% endif %}
+
+			{% if request.user.is_lecturer or request.user.is_student %}
+			<li class="{% if request.path == ucl %}active{% endif %}">
+				<a href="{% url 'user_course_list' %}"><i class="fas fa-book"></i>My Courses</a>
+			</li>
+			{% endif %}
+
+			<li class="{% if request.path == pro %}active{% endif %}">
+				<a href="{% url 'programs' %}"><i class="fas fa-book-open"></i>Programs & Courses</a>
+			</li> {% endcomment %}
+
+			{% comment %} {% if request.user.is_superuser or request.user.is_lecturer %}
+			<li class="{% if request.path == qce %}active{% endif %}">
+				<a href="{% url 'quiz_marking' %}"><i class="fas fa-check-double"></i>Complete Exams</a>
+			</li>
+			{% endif %} {% endcomment %}
+
+			{% comment %} {% if request.user.is_superuser %} {% endcomment %}
+			{% comment %} <li class="{% if request.path == qpr %}active{% endif %}">
+				<a href="{% url 'quiz_progress' %}"><i class="fas fa-record-vinyl"></i>Quiz Progress Rec</a>
+			</li> {% endcomment %}
+			{% comment %} <li class="{% if request.path == cav %}active{% endif %}">
+				<a href="{% url 'course_allocation_view' %}"><i class="fas fa-tasks"></i>Course Allocation</a>
+			</li>
+			<li class="{% if request.path == sess %}active{% endif %}">
+				<a href="{% url 'session_list' %}"><i class="fas fa-calendar-week"></i>Manage Session</a>
+			</li>
+			<li class="{% if request.path == sem %}active{% endif %}">
+				<a href="{% url 'semester_list' %}"><i class="fas fa-calendar-alt"></i>Manage Semester</a>
+			</li>
+			{% endif %}
+
+			{% if request.user.is_lecturer %}
+			<li class="{% if request.path == ascore %}active{% endif %}">
+				<a href="{% url 'add_score' %}"><i class="fas fa-table"></i>Manage Score</a>
+			</li>
+			{% endif %}
+
+			{% if request.user.is_student %}
+			{% comment %} <li class="{% if request.path == qpr %}active{% endif %}">
+				<a href="{% url 'quiz_progress' %}"><i class="fas fa-record-vinyl"></i>Quiz Progress Rec</a>
+			</li> {% endcomment %}
+			{% comment %}<li class="{% if request.path == vr %}active{% endif %}">
+				<a href="{% url 'grade_results' %}"><i class="fab fa-page4"></i>Grade Results</a>
+			</li>
+			<li class="{% if request.path == ar %}active{% endif %}">
+				<a href="{% url 'ass_results' %}"><i class="fa fa-spell-check"></i>Assesment Results</a>
+			</li>
+			<li class="{% if request.path == cr %}active{% endif %}">
+				<a href="{% url 'course_registration' %}"><i class="fas fa-plus"></i>Add & Drop Course</a>
+			</li>
+			{% endif %}
+			<br />
+			<p class="ml-3">&RightArrow; Others</p>
+			<li class="{% if request.path == ep %}active{% endif %}">
+				<a href="{% url 'edit_profile' %}"><i class="fas fa-cogs"></i>Account Setting</a>
+			</li>
+			<li class="{% if request.path == cp %}active{% endif %}">
+				<a href="{% url 'change_password' %}"><i class="fas fa-key"></i>Change Password</a>
+			</li>
+		</ul>
+	</div> {% endcomment %}
+
+	{% comment %} <footer class="card-footer mt-5 pt-3 pb-5 px-2">
+		<div class="col-12">
+			<p class="small m-0">
+				Read our <a href="#"> Privacy </a> and <a href="#"> Terms of use. </a>
+				<br />Django LMS &copy; <script>document.write(new Date().getFullYear());</script>
+				<br />
+			</p>
+			<p>
+				<a href="https://adilmohak.github.io/adil/" target="_blank">By Adil Mohammed</a>
+			</p>
+			<a href="https://github.com/adilmohak/django-lms" class="btn btn-sm btn-dark mx-auto" target="_blank">
+				⭐️ Star on GitHub
+			</a>
+		</div>
+	</footer> {% endcomment %}
+{% comment %} </div> {% endcomment %}
+
+
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+
+        </div>
+        <div class="sidebar-brand-text mx-3">معهد طرابلس للعلوم الطبية </div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+	{% if request.user.is_superuser %}
+    <li class="nav-item {% if request.path == dash %}active{% endif %}">
+        <a class="nav-link" href="{% url 'dashboard' %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>لوحة المعلومات</span></a>
+    </li>
+	{% endif %}
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+
+	    <!-- Divider -->
+	
+
+	<!-- Nav Item - Dashboard -->
+	<li class="nav-item {% if request.path == hom %}active{% endif %}">
+		<a class="nav-link" href="{% url 'home' %}">
+			<i class="fas fa-fw fa-home"></i>
+			<span>الرئيسية</span></a>
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+
+	
+
+	<!-- Nav Item - Dashboard -->
+	<li class="nav-item {% if request.path == prof %}active{% endif %}">
+		<a class="nav-link" href="{% url 'profile' %}">
+			<i class="fas fa-user fa-home"></i>
+			<span>الملف الشخصي</span></a>
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+
+	{% if request.user.is_superuser %}
+	
+
+	<!-- Nav Item - Dashboard -->
+	<li class="nav-item {% if request.path == lec %}active{% endif %}">
+		<a class="nav-link" href="{% url 'lecturer_list' %}">
+			<i class="fas fa-fw fa-users"></i>
+			<span>اعضاء هيئة التدريس</span></a>
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+
+
+	<!-- Nav Item - Dashboard -->
+	<li class="nav-item {% if request.path == stu %}active{% endif %}">
+		<a class="nav-link" href="{% url 'student_list' %}">
+			<i class="fas fa-fw fa-users"></i>
+			<span>الطلاب</span></a>
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+	{% endif %}
+
+	{% if request.user.is_lecturer or request.user.is_student %}
+		<!-- Nav Item - Dashboard -->
+		<li class="nav-item {% if request.path == ucl %}active{% endif %}">
+			<a class="nav-link" href="{% url 'user_course_list' %}">
+				<i class="fas fa-fw fa-users"></i>
+				<span>مقرراتي الدراسية</span></a>
+		</li>
+
+		<!-- Divider -->
+		<hr class="sidebar-divider">
+	{% endif %}
+	<!-- Nav Item - Dashboard -->
+	<li class="nav-item {% if request.path == pro %}active{% endif %}">
+		<a class="nav-link" href="{% url 'programs' %}">
+			<i class="fas fa-fw fa-book"></i>
+			<span>الاقسام و المواد الدراسية</span></a>
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+	{% if request.user.is_superuser %}
+	<li class="nav-item {% if request.path == sem %}active{% endif %}">
+		<a class="nav-link" href="{% url 'semester_list' %}">
+			<i class="fas fa-fw fa-users"></i>
+			<span>الفصل الدراسي</span></a>
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+
+	<li class="nav-item {% if request.path == pro %}active{% endif %}">
+		<a class="nav-link" href="{% url 'programs' %}">
+			<i class="fas fa-fw fa-users"></i>
+			<span>تعيين محاضرين للمواد</span></a>
+	</li>
+
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+	{% endif %}
+
+	{% if request.user.is_lecturer %}
+
+	<li class="nav-item {% if request.path == ascore %}active{% endif %}">
+		<a class="nav-link" href="{% url 'add_score' %}">
+			<i class="fas fa-fw fa-users"></i>
+			<span>ادارة النتيجة</span></a>
+	</li>
+	<!-- Divider -->
+	<hr class="sidebar-divider">
+	{% endif %}	
+    <hr class="sidebar-divider d-none d-md-block">
+	{% if request.user.is_student %}
+			{% comment %} <li class="{% if request.path == qpr %}active{% endif %}">
+				<a href="{% url 'quiz_progress' %}"><i class="fas fa-record-vinyl"></i>Quiz Progress Rec</a>
+			</li> {% endcomment %}
+			<li class="{% if request.path == vr %}active{% endif %}">
+				{% comment %} <a href="{% url 'grade_results' %}"><i class="fab fa-page4"></i>اعمال ال</a> {% endcomment %}
+			</li>
+			<li class="{% if request.path == ar %}active{% endif %}">
+				<a href="{% url 'ass_results' %}"><i class="fa fa-spell-check"></i>النتيجة</a>
+			</li>
+			<li class="{% if request.path == cr %}active{% endif %}">
+				<a href="{% url 'course_registration' %}"><i class="fas fa-plus"></i>تنزيل واسقاط مواد</a>
+			</li>
+	{% endif %}
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+
+
+</ul>
+<!-- End of Sidebar -->
