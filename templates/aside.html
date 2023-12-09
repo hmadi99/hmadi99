@@ -248,7 +248,7 @@
 	<hr class="sidebar-divider">
 
 	<li class="nav-item {% if request.path == pro %}active{% endif %}">
-		<a class="nav-link" href="{% url 'programs' %}">
+		<a class="nav-link" href="{% url 'course_allocation_view' %}">
 			<i class="fas fa-fw fa-users"></i>
 			<span>تعيين محاضرين للمواد</span></a>
 	</li>
@@ -257,16 +257,7 @@
 	<hr class="sidebar-divider">
 	{% endif %}
 
-	{% if request.user.is_lecturer %}
-
-	<li class="nav-item {% if request.path == ascore %}active{% endif %}">
-		<a class="nav-link" href="{% url 'add_score' %}">
-			<i class="fas fa-fw fa-users"></i>
-			<span>ادارة النتيجة</span></a>
-	</li>
-	<!-- Divider -->
-	<hr class="sidebar-divider">
-	{% endif %}	
+	
     <hr class="sidebar-divider d-none d-md-block">
 	{% if request.user.is_student %}
 			{% comment %} <li class="{% if request.path == qpr %}active{% endif %}">
@@ -275,9 +266,7 @@
 			<li class="{% if request.path == vr %}active{% endif %}">
 				{% comment %} <a href="{% url 'grade_results' %}"><i class="fab fa-page4"></i>اعمال ال</a> {% endcomment %}
 			</li>
-			<li class="{% if request.path == ar %}active{% endif %}">
-				<a href="{% url 'ass_results' %}"><i class="fa fa-spell-check"></i>النتيجة</a>
-			</li>
+			
 			<li class="{% if request.path == cr %}active{% endif %}">
 				<a href="{% url 'course_registration' %}"><i class="fas fa-plus"></i>تنزيل واسقاط مواد</a>
 			</li>

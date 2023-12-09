@@ -16,7 +16,6 @@ from django.contrib.auth.forms import (
 
 from .decorators import lecturer_required, student_required, admin_required
 from course.models import Course
-from result.models import TakenCourse
 from app.models import Session, Semester
 from .forms import StaffAddForm, StudentAddForm, ProfileUpdateForm, ParentAddForm
 from .models import User, Student, Parent
@@ -65,15 +64,7 @@ def profile(request):
                 "current_semester": current_semester,
             },
         )
-    elif request.user.is_student:
-        level = Student.objects.get(student__pk=request.user.id)
-        try:
-            parent = Parent.objects.get(student=level)
-        except:
-            parent = "no parent set"
-        courses = TakenCourse.objects.filter(
-            student__student__id=request.user.id, course__level=level.level
-        )
+   
         context = {
             "title": request.user.get_full_name,
             "parent": parent,
@@ -123,11 +114,7 @@ def profile_single(request, id):
             "current_semester": current_semester,
         }
         return render(request, "accounts/profile_single.html", context)
-    elif user.is_student:
-        student = Student.objects.get(student__pk=id)
-        courses = TakenCourse.objects.filter(
-            student__student__id=id, course__level=student.level
-        )
+   
         context = {
             "title": user.get_full_name,
             "user": user,

@@ -44,7 +44,7 @@ from django.db.models import Q
 from accounts.models import User, Student
 from app.models import NewsAndEvents
 from course.models import Program, Course
-from quiz.models import Quiz
+
 
 
 class SearchView(ListView):
@@ -58,26 +58,6 @@ class SearchView(ListView):
         context['query'] = self.request.GET.get('q')
         return context
 
-    def get_queryset(self):
-        request = self.request
-        query = request.GET.get('q', None)
-        
-        if query is not None:
-            news_events_results  = NewsAndEvents.objects.search(query)
-            program_results      = Program.objects.search(query)
-            course_results       = Course.objects.search(query)
-            quiz_results         = Quiz.objects.search(query)
-            
+  
             # combine querysets 
-            queryset_chain = chain(
-                    news_events_results,
-                    program_results,
-                    course_results,
-                    quiz_results
-            )        
-            qs = sorted(queryset_chain, 
-                        key=lambda instance: instance.pk, 
-                        reverse=True)
-            self.count = len(qs) # since qs is actually a list
-            return qs
-        return NewsAndEvents.objects.none() # just an empty queryset as default
+          

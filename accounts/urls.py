@@ -44,13 +44,13 @@ urlpatterns = [
 
     # path('programs/course/delete/<int:pk>/', course_delete, name='delete_course'),
 
-    # Setting urls
+    #Setting urls
     # path('profile/<int:pk>/edit/', profileUpdateView, name='edit_profile'),
     # path('profile/<int:pk>/change-password/', changePasswordView, name='change_password'),
 
     # ################################################################
     # path('login/', LoginView.as_view(), name='login'),
-    # path('logout/', LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
+    path('logout/', LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
 
     # path('password-reset/', PasswordResetView.as_view(
     #     form_class=EmailValidationOnForgotPassword,

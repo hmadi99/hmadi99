@@ -7,10 +7,9 @@ from django.core.paginator import Paginator
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView
-
 from accounts.models import User, Student
 from app.models import Session, Semester
-from result.models import TakenCourse
+from search.models import TakenCourse
 from accounts.decorators import lecturer_required, student_required
 from .forms import (
     ProgramForm, CourseAddForm, CourseAllocationForm, 
@@ -112,16 +111,17 @@ def course_single(request, slug):
     course = Course.objects.get(slug=slug)
     files = Upload.objects.filter(course__slug=slug)
     videos = UploadVideo.objects.filter(course__slug=slug)
-
-    # lecturers = User.objects.filter(allocated_lecturer__pk=course.id)
-    lecturers = CourseAllocation.objects.filter(courses__pk=course.id)
-
+    lecturers_co =  CourseAllocation.objects.all()
+    lecturers = User.objects.filter(allocated_lecturer__pk=course.id)
+    
+   
     return render(request, 'course/course_single.html', {
         'title': course.title,
         'course': course,
         'files': files,
         'videos': videos,
         'lecturers': lecturers,
+        'lecturers_co': lecturers_co,
         'media_url': settings.MEDIA_ROOT,
     }, )
 

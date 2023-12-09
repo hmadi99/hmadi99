@@ -8,6 +8,12 @@ from django.db.models import Q
 # project import
 from .utils import *
 
+PASS = "PASS"
+FAIL = "FAIL"
+COMMENT = (
+    (PASS, "PASS"),
+    (FAIL, "FAIL"),
+)
 
 YEARS = (
         (1, '1'),
@@ -188,3 +194,4 @@ class CourseOffer(models.Model):
 
 	def __str__(self):
 		return "{}".format(self.dep_head)
+

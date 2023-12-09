@@ -210,8 +210,8 @@
                 <img class="img-profile rounded-circle" src="{{ request.user.picture.url }}">
             </a>
             <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in w-100" aria-labelledby="userDropdown">
+                <a class="dropdown-item bg-success" href="#">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     اخر تسجيل دخول : {{ request.user.last_login|date }}
                 </a>
@@ -226,12 +226,12 @@
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     الاعدادات
                 </a>
-
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'logout' %}" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    تسجيل الخروج
-                </a>
+                  <hr>
+                  <div style="display: flex; justify-content: center; align-items: center;">
+                    <a class="btn btn-secondary" href="{% url 'logout' %}">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </a>
+                </div>
             </div>
         </li>
     </ul>

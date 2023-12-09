@@ -17,7 +17,7 @@ MASTER_DEGREE = "Master"
 LEVEL = (
     # (LEVEL_COURSE, "Level course"),
     (BACHLOAR_DEGREE, "دبلوم عالي"),
-    (MASTER_DEGREE, "Master Degree"),
+    (MASTER_DEGREE, "ماجستير"),
 )
 
 FATHER = "Father"
