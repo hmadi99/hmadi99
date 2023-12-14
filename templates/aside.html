@@ -191,10 +191,8 @@
 
 	<!-- Divider -->
 	<hr class="sidebar-divider">
-
+ 
 	{% if request.user.is_superuser %}
-	
-
 	<!-- Nav Item - Dashboard -->
 	<li class="nav-item {% if request.path == lec %}active{% endif %}">
 		<a class="nav-link" href="{% url 'lecturer_list' %}">
@@ -234,7 +232,12 @@
 			<i class="fas fa-fw fa-book"></i>
 			<span>الاقسام و المواد الدراسية</span></a>
 	</li>
-
+	
+ {% if request.user.is_student %}
+	<li class="nav-item {% if request.path == cr %}active{% endif %}">
+		<a  class="nav-link" href="{% url 'course_registration' %}"><i class="fas fa-plus mx-2"></i><span class="mx-2">تنزيل واسقاط مواد</span></a>
+	</li>
+{% endif %}
 	<!-- Divider -->
 	<hr class="sidebar-divider">
 	{% if request.user.is_superuser %}
@@ -254,23 +257,24 @@
 	</li>
 
 	<!-- Divider -->
-	<hr class="sidebar-divider">
-	{% endif %}
-
 	
+	
+	{% endif %}
+   
+
     <hr class="sidebar-divider d-none d-md-block">
-	{% if request.user.is_student %}
-			{% comment %} <li class="{% if request.path == qpr %}active{% endif %}">
+	{% comment %} {% if request.user.is_student %}
+			<li class="{% if request.path == qpr %}active{% endif %}">
 				<a href="{% url 'quiz_progress' %}"><i class="fas fa-record-vinyl"></i>Quiz Progress Rec</a>
-			</li> {% endcomment %}
+			</li> 
 			<li class="{% if request.path == vr %}active{% endif %}">
-				{% comment %} <a href="{% url 'grade_results' %}"><i class="fab fa-page4"></i>اعمال ال</a> {% endcomment %}
+				 <a href="{% url 'grade_results' %}"><i class="fab fa-page4"></i>اعمال ال</a> 
 			</li>
 			
 			<li class="{% if request.path == cr %}active{% endif %}">
 				<a href="{% url 'course_registration' %}"><i class="fas fa-plus"></i>تنزيل واسقاط مواد</a>
 			</li>
-	{% endif %}
+	{% endif %} {% endcomment %}
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

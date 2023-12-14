@@ -35,19 +35,19 @@
 
 {% if request.user.is_student %}
 <div class="table-responsive p-3 mt-3">
-    <div class="table-title"><u>Taken Courses:</u></div>
+    <div class="table-title"><u>الدورات التي تم أخذها :</u></div>
     <div class="table-shadow">
         <table class="table table-light">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th> Course Name </th>
-                    <th> Course Code </th>
+                    <th> اسم المقرر </th>
+                    <th> رمز المقرر </th>
                     <th> Cr.Hr </th>
-                    <th> Year </th>
-                    <th> Semester </th>
-                    <th> Current Semester </th>
-                    <th> Taken </th>
+                    <th> العام </th>
+                    <th> الفصل </th>
+                    <th> الفصل الدراسي الحالي </th>
+                    <th>  مأخوذه </th>
                 </tr>
             </thead>
             <tbody>
@@ -68,7 +68,7 @@
                         {% endif %}
                     </th>
                     <td class="success">
-                        <i class="fas fa-check-circle"></i> Taken
+                        <i class="fas fa-check-circle"></i> مأخوذه
                     </td>
                 </tr>
                 {% endfor %}
@@ -79,26 +79,25 @@
 {% endif %}
 
 <div class="table-responsive p-3">
-    <div class="table-title"><u>All Courses:</u></div>
+    <div class="table-title"><u> جميع المقررات :</u></div>
     <div class="table-shadow">
         <table class="table table-light">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th> Course Name </th>
-                    <th> Course Code </th>
+                    <th> اسم المقرر </th>
+                    <th> رمز المقرر </th>
                     <th> Cr.Hr </th>
-                    <th> Year </th>
-                    <th> Semester </th>
-                    <th> Current Semester </th>
+                    <th> العام </th>
+                    <th> الفصل </th>
+                    <th> الفصل الدراسي الحالي </th>
                 </tr>
             </thead>
             <tbody>
                 {% for course in courses %}
                 <tr>
                     <td>{{ forloop.counter }}.</td> 
-                    <td><a href="{{ course.get_absolute_url }}">
-                        {{ course.title }}</a></td>
+                    <td> {{ course.title }}</td>
                     <td>{{ course.code }}</td>
                     <td>{{ course.credit }}</td>
                     <td>{{ course.year }}</td>

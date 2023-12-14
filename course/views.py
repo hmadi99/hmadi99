@@ -388,7 +388,7 @@ def course_registration(request):
             messages.success(request, 'Courses Registered Successfully!')
         return redirect('course_registration')
     else:
-        # student = Student.objects.get(student__pk=request.user.id)
+       # student = Student.objects.get(student__pk=request.user.id)
         student = get_object_or_404(Student, student__id=request.user.id)
         taken_courses = TakenCourse.objects.filter(student__student__id=request.user.id)
         t = ()

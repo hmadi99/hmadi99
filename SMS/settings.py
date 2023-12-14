@@ -53,6 +53,7 @@ THIRED_PARTY_APPS = [
 
 # Custom apps
 PROJECT_APPS = [
+   
     "app.apps.AppConfig",
     "accounts.apps.AccountsConfig",
     "course.apps.CourseConfig",
