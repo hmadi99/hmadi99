@@ -68,6 +68,7 @@ class SemesterForm(forms.ModelForm):
                 'class': 'browser-default custom-select',
             }
         ),
+       
         label="جلسة",
         required=True
     )

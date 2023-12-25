@@ -115,16 +115,16 @@ def profile_single(request, id):
         }
         return render(request, "accounts/profile_single.html", context)
    
-        context = {
-            "title": user.get_full_name,
-            "user": user,
-            "user_type": "student",
-            "courses": courses,
-            "student": student,
-            "current_session": current_session,
-            "current_semester": current_semester,
-        }
-        return render(request, "accounts/profile_single.html", context)
+        # context = {
+        #     "title": user.get_full_name,
+        #     "user": user,
+        #     "user_type": "student",
+        #     "courses": courses,
+        #     "student": student,
+        #     "current_session": current_session,
+        #     "current_semester": current_semester,
+        # }
+        # return render(request, "accounts/profile_single.html", context)
     else:
         context = {
             "title": user.get_full_name,

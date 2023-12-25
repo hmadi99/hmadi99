@@ -20,7 +20,7 @@
 {% endfor %}
 {% endif %}
 
-{% if request.user.is_superuser %}
+{% if request.user.is_superuser or request.user.is_dep_head %}
 <div class="btn-flex">
     {% if user.is_student %}
     <a class="edit-btn" href="{% url 'student_edit' pk=user.id %}">

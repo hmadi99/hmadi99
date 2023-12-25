@@ -97,7 +97,8 @@
                 {% for course in courses %}
                 <tr>
                     <td>{{ forloop.counter }}.</td> 
-                    <td> {{ course.title }}</td>
+                    <td><a {% if request.user.is_lecturer%} href="{{ course.get_absolute_url }}" {%endif%}>
+                        {{ course.title }}</a></td>
                     <td>{{ course.code }}</td>
                     <td>{{ course.credit }}</td>
                     <td>{{ course.year }}</td>

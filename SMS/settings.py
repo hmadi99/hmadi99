@@ -53,6 +53,7 @@ THIRED_PARTY_APPS = [
 
 # Custom apps
 PROJECT_APPS = [
+    "result.apps.ResultConfig",
    
     "app.apps.AppConfig",
     "accounts.apps.AccountsConfig",

@@ -10,6 +10,18 @@
         <a href="{% url 'programs' %}" class="primary1">الاقسام  </a>
         <a href="{% url 'program_detail' course.program.id %}" class="primary1"> {{ course.program }}</a>
         {{ course }}
+        <div class="col ml-auto">
+            <hr>
+            {% if request.user.is_superuser or request.user.is_lecturer %}
+            <a class="add-button btn-primary px-3 py-2 " href="{% url 'upload_file_view' course.slug %}"><i class="fas fa-plus"></i>
+                تحميل ملف
+            </a>
+            <a class="add-button btn-primary px-3 py-2 mx-5 " href="{% url 'upload_video' course.slug %}"><i class="fas fa-plus"></i>
+                تحميل فيديو 
+            </a>
+            {% endif %}
+        </div>
+        <hr>
     </div>
 
     <div class="manage-wrap">
@@ -21,10 +33,12 @@
             </div>  {% endcomment %}
         </div>
     </div>
-
+{% if request.user.is_lecturer%}
+{{pass}}
+{%else%}
     <div class="title-1">{{ course }}</div>
     <p class="program-description">{{ course.summary }}</p>
-
+{%endif%}
     {% if request.user.is_superuser %}
     <div class="btn-flex">
         <a class="edit-btn" href="{% url 'edit_course' course.slug %}">

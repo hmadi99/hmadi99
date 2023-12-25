@@ -37,9 +37,11 @@
                             {{ form.courses.label }}{{ form.courses }}
                             <span class="danger">{{ form.courses.errors }}</span>
                         </div>
-                        
+                       {% comment %} {%if request.user.is_dep_head %} 
+                       {%for course in form.courses.all %}{{ course }} {% endfor %}
+                       {% else %} {% endcomment %}
                     {% for course in form.courses.all %}{{ course }}{% endfor %}
-
+                    {% comment %} {%endif%} {% endcomment %}
                     <input class="btn btn-outline-primary" type="submit" value="Save">
                 </form>
             </div>

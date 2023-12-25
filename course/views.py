@@ -9,13 +9,15 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from accounts.models import User, Student
 from app.models import Session, Semester
-from search.models import TakenCourse
+from result.models import TakenCourse
+# from search.models import TakenCourse
 from accounts.decorators import lecturer_required, student_required
 from .forms import (
     ProgramForm, CourseAddForm, CourseAllocationForm, 
     EditCourseAllocationForm, UploadFormFile, UploadFormVideo
 )
 from .models import Program, Course, CourseAllocation, Upload, UploadVideo
+from accounts.models import DepartmentHead
 
 
 # ########################################################
@@ -246,7 +248,8 @@ def edit_allocated_course(request, pk):
 
     return render(request, 'course/course_allocation_form.html', {
         'title': "Edit Course Allocated | DjangoSMS",
-        'form': form, 'allocated': pk
+        'form': form, 'allocated': pk,
+        'dep_head': DepartmentHead.objects.all()
     }, )
 
 
@@ -394,8 +397,8 @@ def course_registration(request):
         t = ()
         for i in taken_courses:
             t += (i.course.pk,)
-        current_semester = Semester.objects.get(is_current_semester=True)
-
+        current_semester = Semester.objects.filter(is_current_semester=True).first()
+        
         courses = Course.objects.filter(program__pk=student.department.id, level=student.level, semester=current_semester
         ).exclude(id__in=t).order_by('year')
         all_courses = Course.objects.filter(level=student.level, program__pk=student.department.id)

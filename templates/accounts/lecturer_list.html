@@ -63,7 +63,7 @@
                 <td>{{ lecturer.phone }}</td>
                 <td>{{ lecturer.address }}</td>
                 <td>{{ lecturer.last_login }}</td>
-                {% if request.user.is_superuser %}
+                {% if request.user.is_superuser  %}
                 <td> 
                     <div class="update-delete">
                         <a href="{% url 'staff_edit' pk=lecturer.pk %}" class="update"><i class="fas fa-edit"></i></a>

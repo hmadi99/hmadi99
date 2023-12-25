@@ -234,32 +234,37 @@
 	</li>
 	
  {% if request.user.is_student %}
+ <hr class="sidebar-divider">
 	<li class="nav-item {% if request.path == cr %}active{% endif %}">
 		<a  class="nav-link" href="{% url 'course_registration' %}"><i class="fas fa-plus mx-2"></i><span class="mx-2">تنزيل واسقاط مواد</span></a>
 	</li>
 {% endif %}
 	<!-- Divider -->
-	<hr class="sidebar-divider">
-	{% if request.user.is_superuser %}
+	
+{% if request.user.is_superuser %}
+<hr class="sidebar-divider">
 	<li class="nav-item {% if request.path == sem %}active{% endif %}">
 		<a class="nav-link" href="{% url 'semester_list' %}">
 			<i class="fas fa-fw fa-users"></i>
 			<span>الفصل الدراسي</span></a>
 	</li>
-
+{% endif %}
 	<!-- Divider -->
+	
+	{% if request.user.is_superuser  %}
 	<hr class="sidebar-divider">
-
 	<li class="nav-item {% if request.path == pro %}active{% endif %}">
 		<a class="nav-link" href="{% url 'course_allocation_view' %}">
 			<i class="fas fa-fw fa-users"></i>
 			<span>تعيين محاضرين للمواد</span></a>
 	</li>
+ {%endif%}
+
 
 	<!-- Divider -->
 	
 	
-	{% endif %}
+	
    
 
     <hr class="sidebar-divider d-none d-md-block">

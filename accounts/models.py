@@ -85,6 +85,8 @@ class User(AbstractUser):
             return "Lecturer"
         elif self.is_parent:
             return "Parent"
+        elif self.is_dep_head:
+            return "DepartmentHead"
 
     def get_picture(self):
         try:
@@ -163,6 +165,8 @@ class Parent(models.Model):
 
 
 class DepartmentHead(models.Model):
+    
+        
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.ForeignKey(Program, on_delete=models.CASCADE, null=True)
 
